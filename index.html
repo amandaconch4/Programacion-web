@@ -1,0 +1,111 @@
+<!--establece el tipo de estandar del documento-->
+<!DOCTYPE html>
+<!--idioma-->
+<html lang="es">
+<!--información que se entrega al navegador-->
+
+<head>
+    <meta charset="UTF-8">
+    <title>SEVENGAMER - Inicio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+</head>
+<!--todo el contenido de la pagina todo lo que se ve-->
+
+<body>
+    <header>
+        <div class="container">
+            <div class="logo-container">
+                <p class="logo">SEVENGAMER</p>
+                <p class="slogan">Juegos de un verdadero gamer</p>
+            </div>
+            <nav>
+                <a href="#">Registrarse</a>
+                <a href="#">Iniciar Sesión</a>
+                <a href="#">Comprar como invitado</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="content-container">
+        <!-- Menú lateral de categorías -->
+        <aside class="sidebar">
+            <h2>Categorías</h2>
+            <ul class="categoria-lista">
+                <li><a href="index.html" class="active"><span>Todos</span></a></li>
+                <li><a href="categorias/terror.html"><span>Terror</span></a></li>
+                <li><a href="categorias/mundo-abierto.html"><span>Mundo abierto</span></a></li>
+                <li><a href="categorias/accion.html"><span>Acción</span></a></li>
+                <li><a href="categorias/carreras.html"><span>Carreras</span></a></li>
+                <li><a href="categorias/deportes.html"><span>Deportes</span></a></li>
+                <li><a href="categorias/rol.html"><span>Rol</span></a></li>
+            </ul>
+        </aside>
+
+        <!-- Contenido principal -->
+        <main class="main-content">
+            <h1>Todos los Juegos</h1>
+            
+            <div class="search-box">
+                <input type="text" placeholder="Buscar juegos...">
+                <button type="submit">🔍</button>
+            </div>
+
+            <div class="juegos-lista">
+                <!-- Juegos de Terror -->
+                <div class="juego-card">
+                    <img src="media/terror.jpg" alt="Resident Evil">
+                    <div class="juego-info">
+                        <h3>Resident Evil Village</h3>
+                        <p class="precio">CLP$ 42.000</p>
+                        <a href="detalles-juegos/resident-evil-village.html" class="ver-detalles">Ver Detalles</a>
+                    </div>
+                </div>
+
+                <!-- Juegos de Acción -->
+                <div class="juego-card">
+                    <img src="media/gta5.jpg" alt="GTA V">
+                    <div class="juego-info">
+                        <h3>GTA V</h3>
+                        <p class="precio">CLP$ 35.000</p>
+                        <a href="detalles-juegos/gta5.html" class="ver-detalles">Ver Detalles</a>
+                    </div>
+                </div>
+
+                <!-- Juegos de Mundo Abierto -->
+                <div class="juego-card">
+                    <img src="media/witcher3.jpg" alt="The Witcher 3">
+                    <div class="juego-info">
+                        <h3>The Witcher 3</h3>
+                        <p class="precio">CLP$ 38.000</p>
+                        <a href="detalles-juegos/witcher3.html" class="ver-detalles">Ver Detalles</a>
+                    </div>
+                </div>
+
+                <!-- Juegos de Deportes -->
+                <div class="juego-card">
+                    <img src="media/deporte.jpg" alt="FIFA 24">
+                    <div class="juego-info">
+                        <h3>FIFA 24</h3>
+                        <p class="precio">CLP$ 48.000</p>
+                        <a href="detalles-juegos/fifa24.html" class="ver-detalles">Ver Detalles</a>
+                    </div>
+                </div>
+
+                <!-- Juegos de Carreras -->
+                <div class="juego-card">
+                    <img src="media/carreras.jpg" alt="Forza Horizon 5">
+                    <div class="juego-info">
+                        <h3>Forza Horizon 5</h3>
+                        <p class="precio">CLP$ 46.000</p>
+                        <a href="detalles-juegos/forza-horizon5.html" class="ver-detalles">Ver Detalles</a>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+
+</html>
