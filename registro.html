@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro - SEVENGAMER</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="registro.css">
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <div class="logo-container">
+                <p class="logo">SEVENGAMER</p>
+                <p class="slogan">Juegos de un verdadero gamer</p>
+            </div>
+            <nav>
+                <a href="registro.html" class="tu-clase-de-estilo">Registrarse</a>
+                <a href="login.html" class="tu-clase-de-estilo">Iniciar Sesión</a>
+                <a href="#">Comprar como invitado</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="content-container">
+        <div class="form-box">
+            <h2>Registro</h2>
+            <form id="registroForm">
+                <div class="form-group">
+                    <label for="nombre">Nombre completo:</label>
+                    <input type="text" id="nombre" name="nombre" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="username">Nombre de usuario:</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Correo electrónico:</label>
+                    <input type="email" id="email" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                        placeholder="ejemplo@correo.com" required>
+                    <span class="error-message" id="email-error"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Contraseña:</label>
+                    <input type="password" id="password" name="password" minlength="6" maxlength="18" required>
+                    <button type="button" class="password-toggle" onclick="togglePassword('password')">
+                        <i class="fas fa-eye" id="toggleIcon-password"></i>
+                    </button>
+                    <div class="password-requisitos">
+                        <p>La contraseña debe tener:</p>
+                        <ul>
+                            <li id="req-length">Entre 6 y 18 caracteres</li>
+                            <li id="req-number">Al menos un número</li>
+                            <li id="req-mayus">Al menos una letra mayúscula</li>
+                        </ul>
+                    </div>
+                    <span class="error-message" id="password-error"></span>
+                </div>
+                <div class="form-group">
+                    <label for="password">Confirmar Contraseña:</label>
+                    <input type="password" id="confirmarPassword" name="confirmarPassword" required>
+                    <button type="button" class="password-toggle" onclick="togglePassword('confirmarPassword')">
+                        <i class="fas fa-eye" id="toggleIcon-confirmarPassword"></i>
+                    </button>
+                    <span class="error-message" id="confirmarPassword-error"></span>
+                </div>
+                <div class="form-group">
+                    <label for="fechaNacimiento">Fecha de nacimiento:</label>
+                    <input 
+                        type="date" 
+                        id="fechaNacimiento" 
+                        name="fechaNacimiento" 
+                        required
+                        max="2024-12-31"
+                    >
+                    <span class="error-message" id="fecha-error"></span>
+                </div>
+                <div class="form-group">
+                    <label for="direccion">Dirección:
+                        <span class="opcional">(Opcional)</span></label>
+                    <input type="text" id="direccion" name="direccion" placeholder="Ingrese su dirección para envio">
+                </div>
+
+                <div class="button-container">
+                    <button type="submit" class="submit-btn">
+                        Enviar
+                    </button>
+                    <button type="reset" class="reset-btn">
+                        Limpiar
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const form = document.getElementById('registroForm');
+        const password = document.getElementById('password');
+        const confirmarPassword = document.getElementById('confirmarPassword');
+        const passwordError = document.getElementById('password-error');
+        const confirmarPasswordError = document.getElementById('confirmarPassword-error');
+        const emailInput = document.getElementById('email');
+        const emailError = document.getElementById('email-error');
+        const fechaNacimiento = document.getElementById('fechaNacimiento');
+        const fechaError = document.getElementById('fecha-error');
+
+        // Establecer la fecha máxima (hoy)
+        const hoy = new Date();
+        const minimo = new Date();
+        minimo.setFullYear(hoy.getFullYear() - 100); // Límite de 100 años hacia atrás
+        
+        fechaNacimiento.max = hoy.toISOString().split('T')[0];
+        fechaNacimiento.min = minimo.toISOString().split('T')[0];
+
+        function togglePassword(inputId) {
+            const input = document.getElementById(inputId);
+            const icon = document.getElementById('toggleIcon-' + inputId);
+            
+            if (input.type === "password") {
+                input.type = "text";
+                icon.classList.remove('fa-eye');
+                icon.classList.add('fa-eye-slash');
+            } else {
+                input.type = "password";
+                icon.classList.remove('fa-eye-slash');
+                icon.classList.add('fa-eye');
+            }
+        }
+
+        function validarContraseñas() {
+            if (password.value.length < 6) {
+                passwordError.textContent = 'La contraseña debe tener al menos 6 caracteres';
+                return false;
+            } else {
+                passwordError.textContent = '';
+            }
+
+            if (password.value !== confirmarPassword.value) {
+                confirmarPasswordError.textContent = 'Las contraseñas no coinciden';
+                return false;
+            } else {
+                confirmarPasswordError.textContent = '';
+                return true;
+            }
+        }
+
+        function validarContraseña(contraseña) {
+            const tieneNumero = /[0-9]/.test(contraseña);
+            const tieneMayuscula = /[A-Z]/.test(contraseña);
+            const longitudCorrecta = contraseña.length >= 6 && contraseña.length <= 18;
+
+            const reqLength = document.getElementById('req-length');
+            const reqNumber = document.getElementById('req-number');
+            const reqMayus = document.getElementById('req-mayus');
+
+            reqLength.className = longitudCorrecta ? 'valido' : 'invalido';
+            reqNumber.className = tieneNumero ? 'valido' : 'invalido';
+            reqMayus.className = tieneMayuscula ? 'valido' : 'invalido';
+
+            return longitudCorrecta && tieneNumero && tieneMayuscula;
+        }
+
+        function validarFecha() {
+            const fecha = new Date(fechaNacimiento.value);
+            const edad = hoy.getFullYear() - fecha.getFullYear();
+            const mes = hoy.getMonth() - fecha.getMonth();
+            
+            if (fecha > hoy) {
+                fechaError.textContent = 'La fecha no puede ser futura';
+                return false;
+            }
+            
+            if (edad < 13 || (edad === 13 && mes < 0)) {
+                fechaError.textContent = 'Debes tener al menos 13 años para registrarte';
+                return false;
+            }
+            
+            if (edad > 100) {
+                fechaError.textContent = 'Por favor, ingresa una fecha válida';
+                return false;
+            }
+            
+            fechaError.textContent = '';
+            return true;
+        }
+
+        // Event Listeners
+        password.addEventListener('input', function() {
+            const esValida = validarContraseña(this.value);
+            if (!esValida) {
+                password.setCustomValidity('Por favor, cumple todos los requisitos');
+            } else {
+                password.setCustomValidity('');
+            }
+        });
+
+        confirmarPassword.addEventListener('input', validarContraseñas);
+        password.addEventListener('input', validarContraseñas);
+
+        fechaNacimiento.addEventListener('change', validarFecha);
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            if (!emailInput.validity.valid) {
+                emailError.textContent = 'Por favor, ingrese un correo electrónico válido';
+                emailError.style.display = 'block';
+                return;
+            }
+
+            if (!validarContraseña(password.value)) {
+                return;
+            }
+
+            if (password.value !== confirmarPassword.value) {
+                confirmarPassword.setCustomValidity('Las contraseñas no coinciden');
+                return;
+            }
+
+            if (!validarFecha()) {
+                return;
+            }
+
+            console.log('Formulario enviado');
+            // Aquí puedes agregar la lógica para procesar el formulario
+        });
+    </script>
+</body>
+
+</html>
