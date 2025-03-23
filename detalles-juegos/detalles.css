@@ -36,12 +36,12 @@ body {
 
 .imagen-principal {
     width: 100%;
-    max-height: 400px;
-    object-fit: cover;
+    max-height: 600px;
+    object-fit: contain;
 }
 
 .info-juego {
-    padding: 30px;
+    padding-bottom: 10px;
 }
 
 .titulo-juego {
