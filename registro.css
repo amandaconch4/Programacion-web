@@ -104,6 +104,39 @@ input::placeholder {
     margin-top: 20px;
 }
 
+.home-button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+.home-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0.5rem 1rem;
+    color: white;
+    text-decoration: none;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+}
+
+.home-btn i {
+    font-size: 1.1em;
+}
+
+.home-btn:hover {
+    color: #007bff;
+    transform: translateY(-2px);
+}
+
+.home-btn:active {
+    transform: scale(0.95);
+}
+
 .submit-btn, .reset-btn {
     flex: 1;
     padding: 0.75rem;
@@ -447,4 +480,29 @@ input[type="date"]:valid {
         padding: 0.5rem;
         font-size: 0.85em;
     }
+}
+
+.logo-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.logo-link:hover {
+    transform: scale(1.05);
+}
+
+.logo-link:active {
+    transform: scale(0.95);
+}
+
+.logo {
+    margin-bottom: 0.5rem;
+}
+
+.slogan {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1.1em;
+    margin-top: 0.5rem;
 }
