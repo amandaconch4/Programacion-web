@@ -105,6 +105,21 @@ header {
     text-shadow: 2px 2px 10px rgba(0, 123, 255, 0.3);
 }
 
+.logo-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.logo-link:hover {
+    transform: scale(1.05);
+}
+
+.logo-link:active {
+    transform: scale(0.95);
+}
+
 .slogan {
     font-family: 'Rajdhani', sans-serif;
     font-size: 22px;
