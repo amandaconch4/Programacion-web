@@ -34,7 +34,7 @@
     <div class="content-container">
         <div class="form-box">
             <h2>Registro</h2>
-            <form id="registroForm">
+            <form id="registroForm" onsubmit="mostrarDatos(event)">
                 <div class="form-group">
                     <label for="nombre">Nombre completo:</label>
                     <input type="text" id="nombre" name="nombre" required>
@@ -233,9 +233,42 @@
                 return;
             }
 
-            console.log('Formulario enviado');
-            // Aquí puedes agregar la lógica para procesar el formulario
+            // Mostrar los datos en la página
+            mostrarDatos(e);
         });
+
+        function mostrarDatos(e) {
+            e.preventDefault();
+            
+            // Obtener los valores del formulario
+            const nombre = document.getElementById('nombre').value;
+            const username = document.getElementById('username').value;
+            const email = document.getElementById('email').value;
+            const fechaNacimiento = document.getElementById('fechaNacimiento').value;
+            const direccion = document.getElementById('direccion').value;
+
+            // Crear el HTML para mostrar los datos
+            const datosHTML = `
+                <div class="datos-mostrados">
+                    <h2>Datos registrados:</h2>
+                    <p><strong>Nombre:</strong> ${nombre}</p>
+                    <p><strong>Usuario:</strong> ${username}</p>
+                    <p><strong>Email:</strong> ${email}</p>
+                    <p><strong>Fecha de nacimiento:</strong> ${fechaNacimiento}</p>
+                    <p><strong>Dirección:</strong> ${direccion}</p>
+                    <p><strong>Contraseña:</strong> [Protegida]</p>
+                    <button onclick="limpiarDatos()" class="submit-btn">Volver al formulario</button>
+                </div>
+            `;
+
+            // Ocultar el formulario y mostrar los datos
+            document.querySelector('.form-box').innerHTML = datosHTML;
+        }
+
+        function limpiarDatos() {
+            // Recargar la página para volver al formulario
+            window.location.reload();
+        }
     </script>
 </body>
 
