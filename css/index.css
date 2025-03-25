@@ -70,7 +70,7 @@ button:hover {
 /* Estilos del Encabezado */
 header {
     background-color: rgba(26, 26, 26, 0.7);
-    background-image: url('media/gamer.webp');
+    background-image: url('../media/gamer.webp');
     background-size: cover;
     background-position: center;
     background-blend-mode: overlay;
@@ -489,7 +489,7 @@ nav a:hover {
         0deg,
         rgba(0, 0, 0, 0.5),
         rgba(0, 0, 0, 0.5)
-    ), url("media/terror.jpg");
+    ), url("../media/terror.jpg");
 }
 
 /* Estilos del contenido principal */
@@ -597,60 +597,60 @@ nav a:hover {
 /* Imágenes de fondo para los botones de categoría */
 /* Página principal (index.html) */
 body:not(.categorias-page) .categoria-lista li a[href="index.html"] {
-    background-image: url('media/todos.jpg');
+    background-image: url('../media/todos.jpg');
 }
 
 body:not(.categorias-page) .categoria-lista li a[href="categorias/terror.html"] {
-    background-image: url('media/terror.jpg');
+    background-image: url('../media/terror.jpg');
 }
 
 body:not(.categorias-page) .categoria-lista li a[href="categorias/mundo-abierto.html"] {
-    background-image: url('media/mundo-abierto.jpg');
+    background-image: url('../media/mundo-abierto.jpg');
 }
 
 body:not(.categorias-page) .categoria-lista li a[href="categorias/accion.html"] {
-    background-image: url('media/accion.jpg');
+    background-image: url('../media/accion.jpg');
 }
 
 body:not(.categorias-page) .categoria-lista li a[href="categorias/carreras.html"] {
-    background-image: url('media/carreras.jpg');
+    background-image: url('../media/carreras.jpg');
 }
 
 body:not(.categorias-page) .categoria-lista li a[href="categorias/deportes.html"] {
-    background-image: url('media/deporte.jpg');
+    background-image: url('../media/deporte.jpg');
 }
 
 body:not(.categorias-page) .categoria-lista li a[href="categorias/rol.html"] {
-    background-image: url('media/rol.jpg');
+    background-image: url('../media/rol.jpg');
 }
 
 /* Páginas de categorías */
 .categorias-page .categoria-lista li a[href="../index.html"] {
-    background-image: url('media/todos.jpg');
+    background-image: url('../media/todos.jpg');
 }
 
 .categorias-page .categoria-lista li a[href="terror.html"] {
-    background-image: url('media/terror.jpg');
+    background-image: url('../media/terror.jpg');
 }
 
 .categorias-page .categoria-lista li a[href="mundo-abierto.html"] {
-    background-image: url('media/mundo-abierto.jpg');
+    background-image: url('../media/mundo-abierto.jpg');
 }
 
 .categorias-page .categoria-lista li a[href="accion.html"] {
-    background-image: url('media/accion.jpg');
+    background-image: url('../media/accion.jpg');
 }
 
 .categorias-page .categoria-lista li a[href="carreras.html"] {
-    background-image: url('media/carreras.jpg');
+    background-image: url('../media/carreras.jpg');
 }
 
 .categorias-page .categoria-lista li a[href="deportes.html"] {
-    background-image: url('media/deporte.jpg');
+    background-image: url('../media/deporte.jpg');
 }
 
 .categorias-page .categoria-lista li a[href="rol.html"] {
-    background-image: url('media/rol.jpg');
+    background-image: url('../media/rol.jpg');
 }
 
 /* Ajuste del contenido principal */

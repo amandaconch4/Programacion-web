@@ -9,7 +9,7 @@ body {
 .content-container {
     display: flex;
     max-width: 1400px;
-    margin: 20px auto;
+    margin: 180px auto 20px;
     padding: 20px;
     gap: 30px;
 }

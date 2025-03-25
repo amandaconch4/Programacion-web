@@ -17,7 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
     echo "<p><strong>Fecha de nacimiento:</strong> " . htmlspecialchars($fechaNacimiento) . "</p>";
     echo "<p><strong>Dirección:</strong> " . htmlspecialchars($direccion) . "</p>";
     
-    // Nota: En un entorno real, no deberías mostrar la contraseña
+    // Mostrar la contraseña protegida
     echo "<p><strong>Contraseña:</strong> [Protegida]</p>";
     
     echo "<br><a href='registro.html'>Volver al formulario</a>";
