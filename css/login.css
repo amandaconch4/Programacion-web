@@ -37,15 +37,16 @@
 .form-group label {
     display: block;
     color: #fff;
-    margin-bottom: 8px;
+    margin-bottom: 10px;
     font-family: 'Rajdhani', sans-serif;
     font-size: 1.1em;
 }
 
 .form-group input[type="text"],
-.form-group input[type="password"] {
+.form-group input[type="password"],
+.form-group input[type="email"] {
     width: 100%;
-    padding: 12px;
+    padding: 15px;
     padding-right: 40px;
     border: 2px solid rgba(255, 255, 255, 0.1);
     border-radius: 5px;
@@ -53,6 +54,7 @@
     color: #fff;
     font-size: 1em;
     transition: all 0.3s ease;
+    min-height: 50px;
 }
 
 .form-group input:focus {
@@ -63,14 +65,15 @@
 
 .password-toggle {
     position: absolute;
-    right: 10px;
-    top: 35px;
+    right: 15px;
+    top: 45px;
     background: none;
     border: none;
     color: #fff;
     cursor: pointer;
     padding: 5px;
     z-index: 1;
+    font-size: 1.2em;
 }
 
 .password-toggle:hover {
@@ -123,6 +126,7 @@
     font-size: 1em;
     cursor: pointer;
     transition: all 0.3s ease;
+    min-height: 45px;
 }
 
 .submit-btn {
