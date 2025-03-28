@@ -4,7 +4,10 @@
     align-items: center;
     min-height: calc(100vh - 100px);
     padding: 20px;
-    background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('../media/fondo-login.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 .form-box {
@@ -28,6 +31,7 @@
 
 .form-group {
     margin-bottom: 20px;
+    position: relative;
 }
 
 .form-group label {
@@ -42,6 +46,7 @@
 .form-group input[type="password"] {
     width: 100%;
     padding: 12px;
+    padding-right: 40px;
     border: 2px solid rgba(255, 255, 255, 0.1);
     border-radius: 5px;
     background: rgba(255, 255, 255, 0.05);
@@ -59,13 +64,13 @@
 .password-toggle {
     position: absolute;
     right: 10px;
-    top: 50%;
-    transform: translateY(-50%);
+    top: 35px;
     background: none;
     border: none;
     color: #fff;
     cursor: pointer;
     padding: 5px;
+    z-index: 1;
 }
 
 .password-toggle:hover {
@@ -85,6 +90,7 @@
     color: #fff;
     cursor: pointer;
     user-select: none;
+    margin-bottom: 10px;
 }
 
 .checkbox-container input {
