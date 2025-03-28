@@ -153,4 +153,29 @@
     .button-container {
         flex-direction: column;
     }
+}
+
+.datos-mostrados {
+    text-align: center;
+    color: #fff;
+}
+
+.datos-mostrados h2 {
+    color: #00ff88;
+    margin-bottom: 20px;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 2em;
+    text-shadow: 0 0 10px rgba(0, 255, 136, 0.3);
+}
+
+.datos-mostrados p {
+    margin: 10px 0;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 1.2em;
+}
+
+.datos-mostrados .submit-btn {
+    margin-top: 20px;
+    width: auto;
+    min-width: 200px;
 } 

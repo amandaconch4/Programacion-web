@@ -87,7 +87,7 @@ form.addEventListener('submit', function(e) {
         // Por ahora, solo mostraremos un mensaje de éxito
         const datosHTML = `
             <div class="datos-mostrados">
-                <h2>¡Bienvenido!</h2>
+                <h2>¡Bienvenid@!</h2>
                 <p>Has iniciado sesión correctamente.</p>
                 <p>Usuario: ${username.value}</p>
                 <button onclick="window.location.href='index.html'" class="submit-btn">Ir al inicio</button>
