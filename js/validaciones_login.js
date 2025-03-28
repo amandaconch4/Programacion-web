@@ -19,6 +19,33 @@ function togglePassword(inputId) {
     }
 }
 
+function validarContraseña(contraseña) {
+    const tieneNumero = /[0-9]/.test(contraseña);
+    const tieneMayuscula = /[A-Z]/.test(contraseña);
+    const longitudCorrecta = contraseña.length >= 6 && contraseña.length <= 18;
+
+    if (!longitudCorrecta) {
+        passwordError.textContent = 'La contraseña debe tener entre 6 y 18 caracteres';
+        passwordError.style.display = 'block';
+        return false;
+    }
+
+    if (!tieneNumero) {
+        passwordError.textContent = 'La contraseña debe contener al menos un número';
+        passwordError.style.display = 'block';
+        return false;
+    }
+
+    if (!tieneMayuscula) {
+        passwordError.textContent = 'La contraseña debe contener al menos una letra mayúscula';
+        passwordError.style.display = 'block';
+        return false;
+    }
+
+    passwordError.style.display = 'none';
+    return true;
+}
+
 function validarFormulario() {
     let esValido = true;
 
@@ -36,12 +63,21 @@ function validarFormulario() {
         passwordError.textContent = 'Por favor, ingrese su contraseña';
         passwordError.style.display = 'block';
         esValido = false;
-    } else {
-        passwordError.style.display = 'none';
+    } else if (!validarContraseña(password.value)) {
+        esValido = false;
     }
 
     return esValido;
 }
+
+// Event Listeners
+password.addEventListener('input', function() {
+    if (this.value.trim() !== '') {
+        validarContraseña(this.value);
+    } else {
+        passwordError.style.display = 'none';
+    }
+});
 
 form.addEventListener('submit', function(e) {
     e.preventDefault();
