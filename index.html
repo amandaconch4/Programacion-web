@@ -30,10 +30,37 @@
                 <a href="login.html" class="tu-clase-de-estilo">Iniciar Sesión</a>
                 <a href="#" class="carrito-icon" id="carritoBtn">
                     <img src="media/carrito-compras.png" alt="Carrito de compras" class="carrito-img">
+                    <span id="contador-carrito">0</span>
                 </a>
             </nav>
         </div>
     </header>
+
+    <!-- Modal del Carrito -->
+    <div class="carrito-modal" id="carritoModal">
+        <div class="carrito-header">
+            <h2>Carrito de Compras</h2>
+            <button class="cerrar-carrito" onclick="cerrarCarrito()">&times;</button>
+        </div>
+        <div class="carrito-items" id="carritoItems">
+            <!-- Los items del carrito se agregarán aquí dinámicamente -->
+        </div>
+        <div class="carrito-total">
+            <div class="total-row">
+                <span>Subtotal:</span>
+                <span id="subtotal">CLP$ 0</span>
+            </div>
+            <div class="total-row">
+                <span>IVA (19%):</span>
+                <span id="iva">CLP$ 0</span>
+            </div>
+            <div class="total-row final">
+                <span>Total:</span>
+                <span id="total">CLP$ 0</span>
+            </div>
+            <button class="checkout-btn" onclick="procederPago()">Proceder al Pago</button>
+        </div>
+    </div>
 
     <div class="content-container">
 
@@ -68,7 +95,10 @@
                     <div class="juego-info">
                         <h3>Resident Evil Village</h3>
                         <p class="precio">CLP$ 42.000</p>
-                        <a href="detalles-juegos/resident-evil-village.html" class="ver-detalles">Ver Detalles</a>
+                        <div class="detalles-container">
+                            <a href="detalles-juegos/resident-evil-village.html" class="ver-detalles">Ver Detalles</a>
+                            <button class="agregar-carrito" onclick="agregarAlCarrito('re8', 'Resident Evil Village', 42000, 'media/resident-evil-village.jpg')">Agregar al carrito</button>
+                        </div>
                     </div>
                 </div>
 
@@ -79,7 +109,8 @@
                         <h3>GTA V</h3>
                         <p class="precio">CLP$ 35.000</p>
                         <div class="detalles-container">
-                        <a href="detalles-juegos/gta5.html" class="ver-detalles">Ver Detalles</a>
+                            <a href="detalles-juegos/gta5.html" class="ver-detalles">Ver Detalles</a>
+                            <button class="agregar-carrito" onclick="agregarAlCarrito('gta5', 'GTA V', 35000, 'media/gta-5.jpg')">Agregar al carrito</button>
                         </div>
                     </div>
                 </div>
@@ -90,7 +121,10 @@
                     <div class="juego-info">
                         <h3>The Witcher 3</h3>
                         <p class="precio">CLP$ 38.000</p>
-                        <a href="detalles-juegos/witcher3.html" class="ver-detalles">Ver Detalles</a>
+                        <div class="detalles-container">
+                            <a href="detalles-juegos/witcher3.html" class="ver-detalles">Ver Detalles</a>
+                            <button class="agregar-carrito" onclick="agregarAlCarrito('witcher3', 'The Witcher 3', 38000, 'media/witcher3.jpg')">Agregar al carrito</button>
+                        </div>
                     </div>
                 </div>
 
@@ -100,7 +134,10 @@
                     <div class="juego-info">
                         <h3>FIFA 24</h3>
                         <p class="precio">CLP$ 48.000</p>
-                        <a href="detalles-juegos/fifa24.html" class="ver-detalles">Ver Detalles</a>
+                        <div class="detalles-container">
+                            <a href="detalles-juegos/fifa24.html" class="ver-detalles">Ver Detalles</a>
+                            <button class="agregar-carrito" onclick="agregarAlCarrito('fifa24', 'FIFA 24', 48000, 'media/deporte.jpg')">Agregar al carrito</button>
+                        </div>
                     </div>
                 </div>
 
@@ -110,7 +147,10 @@
                     <div class="juego-info">
                         <h3>Forza Horizon 5</h3>
                         <p class="precio">CLP$ 46.000</p>
-                        <a href="detalles-juegos/forza-horizon5.html" class="ver-detalles">Ver Detalles</a>
+                        <div class="detalles-container">
+                            <a href="detalles-juegos/forza-horizon5.html" class="ver-detalles">Ver Detalles</a>
+                            <button class="agregar-carrito" onclick="agregarAlCarrito('forza5', 'Forza Horizon 5', 46000, 'media/carreras.jpg')">Agregar al carrito</button>
+                        </div>
                     </div>
                 </div>
 
@@ -120,7 +160,10 @@
                     <div class="juego-info">
                         <h3>Final Fantasy XVI</h3>
                         <p class="precio">CLP$ 52.000</p>
-                        <a href="detalles-juegos/forza-horizon5.html" class="ver-detalles">Ver Detalles</a>
+                        <div class="detalles-container">
+                            <a href="detalles-juegos/final-fantasy16.html" class="ver-detalles">Ver Detalles</a>
+                            <button class="agregar-carrito" onclick="agregarAlCarrito('ff16', 'Final Fantasy XVI', 52000, 'media/finalfantasy.jpg')">Agregar al carrito</button>
+                        </div>
                     </div>
                 </div>               
 
@@ -128,6 +171,7 @@
         </main>
     </div>
     <script src="js/search.js"></script>
+    <script src="js/validaciones.js"></script>
     <script src="js/carrito.js"></script>
 </body>
 
