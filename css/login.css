@@ -477,4 +477,10 @@
     .carrito-modal {
         width: 100%;
     }
+}
+
+.slogan {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1.1em;
+    margin-top: 0.5rem;
 } 
