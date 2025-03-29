@@ -196,4 +196,22 @@
     margin-top: 20px;
     width: auto;
     min-width: 200px;
+}
+
+.register-link {
+    text-align: center;
+    color: #fff;
+    margin-top: 20px;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 1.1em;
+}
+
+.register-link a {
+    color: #00ff88;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.register-link a:hover {
+    text-decoration: underline;
 } 
