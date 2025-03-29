@@ -214,4 +214,51 @@
 
 .register-link a:hover {
     text-decoration: underline;
+}
+
+.email-requisitos {
+    margin-top: 8px;
+    font-size: 12px;
+}
+
+.email-requisitos p {
+    margin-bottom: 5px;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.email-requisitos ul {
+    list-style: none;
+    padding-left: 0;
+    margin-top: 5px;
+}
+
+.email-requisitos li {
+    margin: 3px 0;
+    padding-left: 25px;
+    position: relative;
+    color: rgba(255, 255, 255, 0.6);
+    transition: color 0.3s ease;
+}
+
+.email-requisitos li::before {
+    font-family: "Font Awesome 5 Free";
+    content: '\f057'; /* ícono de círculo con X */
+    position: absolute;
+    left: 0;
+    color: #dc3545;
+    font-weight: 900;
+    font-size: 16px;
+}
+
+.email-requisitos li.valido::before {
+    content: '\f058'; /* ícono de círculo con check */
+    color: #28a745;
+}
+
+.email-requisitos li.valido {
+    color: #28a745;
+}
+
+.email-requisitos li.invalido {
+    color: #dc3545;
 } 

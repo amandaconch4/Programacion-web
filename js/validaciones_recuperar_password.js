@@ -3,33 +3,35 @@ const emailInput = document.getElementById('email');
 const emailError = document.getElementById('email-error');
 
 function validarEmail(email) {
-    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    return emailRegex.test(email);
+    const formatoValido = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email);
+    const caracteresPermitidos = /^[a-zA-Z0-9._%+-@]+$/.test(email.split('@')[0]);
+    const dominioValido = /^[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email.split('@')[1]);
+
+    const reqFormato = document.getElementById('req-email-formato');
+    const reqCaracteres = document.getElementById('req-email-caracteres');
+    const reqDominio = document.getElementById('req-email-dominio');
+
+    reqFormato.className = formatoValido ? 'valido' : 'invalido';
+    reqCaracteres.className = caracteresPermitidos ? 'valido' : 'invalido';
+    reqDominio.className = dominioValido ? 'valido' : 'invalido';
+
+    return formatoValido && caracteresPermitidos && dominioValido;
 }
 
-function validarFormulario() {
-    let esValido = true;
-
-    // Validar correo electrónico
-    if (!emailInput.value.trim()) {
-        emailError.textContent = 'Por favor, ingrese su correo electrónico';
-        emailError.style.display = 'block';
-        esValido = false;
-    } else if (!validarEmail(emailInput.value)) {
-        emailError.textContent = 'Por favor, ingrese un correo electrónico válido';
-        emailError.style.display = 'block';
-        esValido = false;
+// Event Listeners
+emailInput.addEventListener('input', function() {
+    const esValido = validarEmail(this.value);
+    if (!esValido) {
+        emailInput.setCustomValidity('Por favor, cumple todos los requisitos del correo electrónico');
     } else {
-        emailError.style.display = 'none';
+        emailInput.setCustomValidity('');
     }
-
-    return esValido;
-}
+});
 
 form.addEventListener('submit', function(e) {
     e.preventDefault();
     
-    if (validarFormulario()) {
+    if (validarEmail(emailInput.value)) {
         // Aquí iría la lógica para enviar el correo de recuperación
         // Por ahora, solo mostraremos un mensaje de éxito
         const datosHTML = `
