@@ -88,6 +88,22 @@ function validarFecha() {
     return true;
 }
 
+function validarEmail(email) {
+    const formatoValido = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email);
+    const caracteresPermitidos = /^[a-zA-Z0-9._%+-@]+$/.test(email.split('@')[0]);
+    const dominioValido = /^[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email.split('@')[1]);
+
+    const reqFormato = document.getElementById('req-email-formato');
+    const reqCaracteres = document.getElementById('req-email-caracteres');
+    const reqDominio = document.getElementById('req-email-dominio');
+
+    reqFormato.className = formatoValido ? 'valido' : 'invalido';
+    reqCaracteres.className = caracteresPermitidos ? 'valido' : 'invalido';
+    reqDominio.className = dominioValido ? 'valido' : 'invalido';
+
+    return formatoValido && caracteresPermitidos && dominioValido;
+}
+
 // Event Listeners
 password.addEventListener('input', function() {
     const esValida = validarContraseña(this.value);
@@ -102,6 +118,15 @@ confirmarPassword.addEventListener('input', validarContraseñas);
 password.addEventListener('input', validarContraseñas);
 
 fechaNacimiento.addEventListener('change', validarFecha);
+
+emailInput.addEventListener('input', function() {
+    const esValido = validarEmail(this.value);
+    if (!esValido) {
+        emailInput.setCustomValidity('Por favor, cumple todos los requisitos del correo electrónico');
+    } else {
+        emailInput.setCustomValidity('');
+    }
+});
 
 form.addEventListener('submit', function(e) {
     e.preventDefault();
