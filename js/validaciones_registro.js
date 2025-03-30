@@ -59,17 +59,20 @@ function validarContraseñas() {
 function validarContraseña(contraseña) {
     const tieneNumero = /[0-9]/.test(contraseña);
     const tieneMayuscula = /[A-Z]/.test(contraseña);
+    const tieneCaracterEspecial = /[.,!@#$%^&*]/.test(contraseña);
     const longitudCorrecta = contraseña.length >= 6 && contraseña.length <= 18;
 
     const reqLength = document.getElementById('req-length');
     const reqNumber = document.getElementById('req-number');
     const reqMayus = document.getElementById('req-mayus');
+    const reqSpecial = document.getElementById('req-special');
 
     reqLength.className = longitudCorrecta ? 'valido' : 'invalido';
     reqNumber.className = tieneNumero ? 'valido' : 'invalido';
     reqMayus.className = tieneMayuscula ? 'valido' : 'invalido';
+    reqSpecial.className = tieneCaracterEspecial ? 'valido' : 'invalido';
 
-    return longitudCorrecta && tieneNumero && tieneMayuscula;
+    return longitudCorrecta && tieneNumero && tieneMayuscula && tieneCaracterEspecial;
 }
 
 function validarFecha() {
