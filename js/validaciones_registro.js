@@ -283,7 +283,9 @@ function mostrarDatos(e) {
             <p><strong>Fecha de nacimiento:</strong> ${fechaNacimiento}</p>
             <p><strong>Dirección:</strong> ${direccion}</p>
             <p><strong>Contraseña:</strong> [Protegida]</p>
-            <button onclick="limpiarDatos()" class="submit-btn">Volver al formulario</button>
+            <div class="button-container">
+                <a href="login.html" class="submit-btn">Iniciar Sesión</a>
+            </div>
         </div>
     `;
 
