@@ -69,25 +69,18 @@ function actualizarContadorCarrito() {
 
 // Mostrar mensaje de éxito
 function mostrarMensajeExito() {
-    // Solo mostrar el mensaje si estamos en una página de juegos
-    const esPaginaJuegos = window.location.pathname.includes('detalles-juegos') || 
-                          window.location.pathname.includes('categorias') || 
-                          window.location.pathname === '/index.html';
+    // Crear el elemento del mensaje
+    const mensaje = document.createElement('div');
+    mensaje.className = 'mensaje-exito';
+    mensaje.textContent = '¡Juego agregado al carrito!';
     
-    if (esPaginaJuegos) {
-        // Crear el elemento del mensaje
-        const mensaje = document.createElement('div');
-        mensaje.className = 'mensaje-exito';
-        mensaje.textContent = '¡Juego agregado al carrito!';
-        
-        // Agregar el mensaje al body
-        document.body.appendChild(mensaje);
-        
-        // Remover el mensaje después de 3 segundos
-        setTimeout(() => {
-            mensaje.remove();
-        }, 3000);
-    }
+    // Agregar el mensaje al body
+    document.body.appendChild(mensaje);
+    
+    // Remover el mensaje después de 3 segundos
+    setTimeout(() => {
+        mensaje.remove();
+    }, 3000);
 }
 
 // Abrir el modal del carrito

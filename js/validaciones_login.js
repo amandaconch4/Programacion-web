@@ -1,6 +1,6 @@
 const form = document.getElementById('loginForm');
-const usernameInput = document.getElementById('username');
-const passwordInput = document.getElementById('password');
+const username = document.getElementById('username');
+const password = document.getElementById('password');
 const usernameError = document.getElementById('username-error');
 const passwordError = document.getElementById('password-error');
 
@@ -46,39 +46,35 @@ function validarContraseña(contraseña) {
     return true;
 }
 
-// Event Listeners para validación
-usernameInput.addEventListener('invalid', function(e) {
-    e.preventDefault();
-    if (!this.validity.valid) {
+function validarFormulario() {
+    let esValido = true;
+
+    // Validar nombre de usuario
+    if (username.value.trim() === '') {
         usernameError.textContent = 'Por favor, ingrese su nombre de usuario';
         usernameError.style.display = 'block';
+        esValido = false;
     } else {
-        usernameError.textContent = '';
         usernameError.style.display = 'none';
     }
-});
 
-usernameInput.addEventListener('input', function() {
-    if (this.validity.valid) {
-        usernameError.textContent = '';
-        usernameError.style.display = 'none';
-    }
-});
-
-passwordInput.addEventListener('invalid', function(e) {
-    e.preventDefault();
-    if (!this.validity.valid) {
+    // Validar contraseña
+    if (password.value.trim() === '') {
         passwordError.textContent = 'Por favor, ingrese su contraseña';
         passwordError.style.display = 'block';
-    } else {
-        passwordError.textContent = '';
-        passwordError.style.display = 'none';
+        esValido = false;
+    } else if (!validarContraseña(password.value)) {
+        esValido = false;
     }
-});
 
-passwordInput.addEventListener('input', function() {
-    if (this.validity.valid) {
-        passwordError.textContent = '';
+    return esValido;
+}
+
+// Event Listeners
+password.addEventListener('input', function() {
+    if (this.value.trim() !== '') {
+        validarContraseña(this.value);
+    } else {
         passwordError.style.display = 'none';
     }
 });
@@ -86,29 +82,17 @@ passwordInput.addEventListener('input', function() {
 form.addEventListener('submit', function(e) {
     e.preventDefault();
     
-    if (!usernameInput.validity.valid) {
-        usernameError.textContent = 'Por favor, ingrese su nombre de usuario';
-        usernameError.style.display = 'block';
-        return;
+    if (validarFormulario()) {
+        // Aquí puedes agregar la lógica para enviar los datos al servidor
+        // Por ahora, solo mostraremos un mensaje de éxito
+        const datosHTML = `
+            <div class="datos-mostrados">
+                <h2>¡Bienvenid@!</h2>
+                <p>Has iniciado sesión correctamente.</p>
+                <p>Usuario: ${username.value}</p>
+                <button onclick="window.location.href='index.html'" class="submit-btn">Ir al inicio</button>
+            </div>
+        `;
+        document.querySelector('.form-box').innerHTML = datosHTML;
     }
-
-    if (!passwordInput.validity.valid) {
-        passwordError.textContent = 'Por favor, ingrese su contraseña';
-        passwordError.style.display = 'block';
-        return;
-    }
-
-    // Aquí iría la lógica de autenticación
-    mostrarMensajeExito();
-});
-
-function mostrarMensajeExito() {
-    const formBox = document.querySelector('.form-box');
-    formBox.innerHTML = `
-        <div class="mensaje-exito">
-            <h2>¡Inicio de sesión exitoso!</h2>
-            <p>Bienvenido de vuelta.</p>
-            <a href="index.html" class="submit-btn">Ir al inicio</a>
-        </div>
-    `;
-} 
+}); 
