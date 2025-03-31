@@ -82,7 +82,7 @@ function validarFormulario() {
 username.addEventListener('invalid', function(e) {
     e.preventDefault();
     if (!this.validity.valid) {
-        usernameError.textContent = 'Por favor, ingrese un nombre de usuario';
+        usernameError.textContent = 'Por favor, ingrese su nombre de usuario';
         usernameError.style.display = 'block';
     } else {
         usernameError.textContent = '';
@@ -93,7 +93,7 @@ username.addEventListener('invalid', function(e) {
 password.addEventListener('invalid', function(e) {
     e.preventDefault();
     if (!this.validity.valid) {
-        passwordError.textContent = 'Por favor, ingrese una contraseña válida';
+        passwordError.textContent = 'Por favor, ingrese su contraseña';
         passwordError.style.display = 'block';
     } else {
         passwordError.textContent = '';
