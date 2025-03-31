@@ -113,6 +113,7 @@ function configurarFormularioPago() {
             const currentDate = new Date();
             const currentYear = currentDate.getFullYear() % 100;
             const currentMonth = currentDate.getMonth() + 1;
+            const maxYear = (currentDate.getFullYear() + 10) % 100;
 
             const inputMonth = parseInt(month);
             const inputYear = parseInt(year);
@@ -121,6 +122,8 @@ function configurarFormularioPago() {
                 expiryError.textContent = 'Mes inválido';
             } else if (inputYear < currentYear || (inputYear === currentYear && inputMonth < currentMonth)) {
                 expiryError.textContent = 'La tarjeta está vencida';
+            } else if (inputYear > maxYear) {
+                expiryError.textContent = 'La fecha no puede exceder 10 años';
             } else {
                 expiryError.textContent = '';
             }
@@ -169,6 +172,26 @@ function configurarFormularioPago() {
         if (!expiryDateInput.value || expiryDateInput.value.length !== 5) {
             expiryError.textContent = 'Por favor ingrese una fecha de vencimiento';
             hasErrors = true;
+        } else {
+            const [month, year] = expiryDateInput.value.split('/');
+            const currentDate = new Date();
+            const currentYear = currentDate.getFullYear() % 100;
+            const currentMonth = currentDate.getMonth() + 1;
+            const maxYear = (currentDate.getFullYear() + 10) % 100;
+
+            const inputMonth = parseInt(month);
+            const inputYear = parseInt(year);
+
+            if (inputMonth < 1 || inputMonth > 12) {
+                expiryError.textContent = 'Mes inválido';
+                hasErrors = true;
+            } else if (inputYear < currentYear || (inputYear === currentYear && inputMonth < currentMonth)) {
+                expiryError.textContent = 'La tarjeta está vencida';
+                hasErrors = true;
+            } else if (inputYear > maxYear) {
+                expiryError.textContent = 'La fecha no puede exceder 10 años';
+                hasErrors = true;
+            }
         }
 
         // Validar CVV
