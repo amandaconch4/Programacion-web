@@ -69,6 +69,7 @@ function actualizarContadorCarrito() {
 
 // Mostrar mensaje de éxito
 function mostrarMensajeExito() {
+    
     // Crear el elemento del mensaje
     const mensaje = document.createElement('div');
     mensaje.className = 'mensaje-exito';
