@@ -7,6 +7,10 @@ const emailInput = document.getElementById('email');
 const emailError = document.getElementById('email-error');
 const fechaNacimiento = document.getElementById('fechaNacimiento');
 const fechaError = document.getElementById('fecha-error');
+const nombreInput = document.getElementById('nombre');
+const nombreError = document.getElementById('nombre-error');
+const usernameInput = document.getElementById('username');
+const usernameError = document.getElementById('username-error');
 
 // Establecer la fecha máxima (hoy)
 const hoy = new Date();
@@ -34,16 +38,20 @@ function togglePassword(inputId) {
 function validarContraseñas() {
     if (password.value.length < 6) {
         passwordError.textContent = 'La contraseña debe tener al menos 6 caracteres';
+        passwordError.style.display = 'block';
         return false;
     } else {
         passwordError.textContent = '';
+        passwordError.style.display = 'none';
     }
 
     if (password.value !== confirmarPassword.value) {
         confirmarPasswordError.textContent = 'Las contraseñas no coinciden';
+        confirmarPasswordError.style.display = 'block';
         return false;
     } else {
         confirmarPasswordError.textContent = '';
+        confirmarPasswordError.style.display = 'none';
         return true;
     }
 }
@@ -71,20 +79,24 @@ function validarFecha() {
     
     if (fecha > hoy) {
         fechaError.textContent = 'La fecha no puede ser futura';
+        fechaError.style.display = 'block';
         return false;
     }
     
     if (edad < 13 || (edad === 13 && mes < 0)) {
         fechaError.textContent = 'Debes tener al menos 13 años para registrarte';
+        fechaError.style.display = 'block';
         return false;
     }
     
     if (edad > 100) {
         fechaError.textContent = 'Por favor, ingresa una fecha válida';
+        fechaError.style.display = 'block';
         return false;
     }
     
     fechaError.textContent = '';
+    fechaError.style.display = 'none';
     return true;
 }
 
@@ -105,31 +117,98 @@ function validarEmail(email) {
 }
 
 // Event Listeners
-password.addEventListener('input', function() {
-    const esValida = validarContraseña(this.value);
-    if (!esValida) {
-        password.setCustomValidity('Por favor, cumple todos los requisitos');
+password.addEventListener('invalid', function(e) {
+    e.preventDefault();
+    if (!this.validity.valid) {
+        passwordError.textContent = 'Por favor, ingrese una contraseña válida';
+        passwordError.style.display = 'block';
     } else {
-        password.setCustomValidity('');
+        passwordError.textContent = '';
+        passwordError.style.display = 'none';
     }
 });
 
-confirmarPassword.addEventListener('input', validarContraseñas);
-password.addEventListener('input', validarContraseñas);
+confirmarPassword.addEventListener('invalid', function(e) {
+    e.preventDefault();
+    if (!this.validity.valid) {
+        confirmarPasswordError.textContent = 'Por favor, confirme su contraseña';
+        confirmarPasswordError.style.display = 'block';
+    } else {
+        confirmarPasswordError.textContent = '';
+        confirmarPasswordError.style.display = 'none';
+    }
+});
 
-fechaNacimiento.addEventListener('change', validarFecha);
+fechaNacimiento.addEventListener('invalid', function(e) {
+    e.preventDefault();
+    if (!this.validity.valid) {
+        fechaError.textContent = 'Por favor, seleccione su fecha de nacimiento';
+        fechaError.style.display = 'block';
+    } else {
+        fechaError.textContent = '';
+        fechaError.style.display = 'none';
+    }
+});
+
+emailInput.addEventListener('invalid', function(e) {
+    e.preventDefault();
+    if (!this.validity.valid) {
+        emailError.textContent = 'Por favor, ingrese un correo electrónico válido';
+        emailError.style.display = 'block';
+    } else {
+        emailError.textContent = '';
+        emailError.style.display = 'none';
+    }
+});
 
 emailInput.addEventListener('input', function() {
     const esValido = validarEmail(this.value);
     if (!esValido) {
-        emailInput.setCustomValidity('Por favor, cumple todos los requisitos del correo electrónico');
+        emailError.textContent = 'Por favor, cumple todos los requisitos del correo electrónico';
+        emailError.style.display = 'block';
     } else {
-        emailInput.setCustomValidity('');
+        emailError.textContent = '';
+        emailError.style.display = 'none';
+    }
+});
+usernameInput.addEventListener('input', function() {
+    if (this.validity.valid) {
+        usernameError.textContent = '';
+        usernameError.style.display = 'none';
     }
 });
 
+// Event Listeners para validación en tiempo real
+password.addEventListener('input', function() {
+    const esValida = validarContraseña(this.value);
+    if (!esValida) {
+        passwordError.textContent = 'Por favor, cumple todos los requisitos de la contraseña';
+        passwordError.style.display = 'block';
+    } else {
+        passwordError.textContent = '';
+        passwordError.style.display = 'none';
+    }
+    validarContraseñas();
+});
+
+confirmarPassword.addEventListener('input', validarContraseñas);
+
+fechaNacimiento.addEventListener('change', validarFecha);
+
+
 form.addEventListener('submit', function(e) {
     e.preventDefault();
+    if (!nombreInput.validity.valid) {
+        nombreError.textContent = 'Por favor, ingrese su nombre completo';
+        nombreError.style.display = 'block';
+        return;
+    }
+
+    if (!usernameInput.validity.valid) {
+        usernameError.textContent = 'Por favor, ingrese un nombre de usuario';
+        usernameError.style.display = 'block';
+        return;
+    }
     
     if (!emailInput.validity.valid) {
         emailError.textContent = 'Por favor, ingrese un correo electrónico válido';
