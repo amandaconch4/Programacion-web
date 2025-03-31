@@ -179,11 +179,7 @@ function eliminarDelCarrito(id) {
 
 // Proceder al pago
 function procederPago() {
-    alert('¡Gracias por tu compra!');
-    localStorage.setItem('carrito', JSON.stringify([]));
-    actualizarContadorCarrito();
-    actualizarContenidoCarrito();
-    cerrarCarrito();
+    window.location.href = 'pago.html';
 }
 
 // Inicializar el contador del carrito cuando se carga la página
