@@ -97,6 +97,7 @@ h1 {
 
 .form-group {
     margin-bottom: 1.5rem;
+    position: relative;
 }
 
 .form-group label {
@@ -161,6 +162,28 @@ h1 {
     color: #808080;
 }
 
+.form-group input:invalid,
+.form-group select:invalid {
+    border-color: #ff3366;
+}
+
+.payment-form input:invalid {
+    box-shadow: none;
+}
+
+.payment-form:invalid {
+    box-shadow: none;
+}
+
+.error-message {
+    color: #ff3366;
+    font-size: 0.875rem;
+    margin-top: 0.5rem;
+    font-family: 'Rajdhani', sans-serif;
+    display: block;
+    min-height: 1.25rem;
+}
+
 .payment-buttons {
     display: flex;
     gap: 1rem;
@@ -198,17 +221,6 @@ h1 {
 .cancel-btn:hover {
     background-color: #cc295a;
     transform: translateY(-2px);
-}
-
-.error-message {
-    color: #ff3366;
-    font-size: 0.9rem;
-    margin-top: 0.5rem;
-    font-family: 'Rajdhani', sans-serif;
-}
-
-.form-group input:invalid {
-    border-color: #ff3366;
 }
 
 /* Header styles */
