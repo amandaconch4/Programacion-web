@@ -175,12 +175,13 @@
 
 .datos-mostrados {
     text-align: center;
+    padding: 20px;
     color: #fff;
 }
 
 .datos-mostrados h2 {
-    color: #00ff88;
     margin-bottom: 20px;
+    color: #00ff88;
     font-family: 'Orbitron', sans-serif;
     font-size: 2em;
     text-shadow: 0 0 10px rgba(0, 255, 136, 0.3);
@@ -191,11 +192,25 @@
     font-family: 'Rajdhani', sans-serif;
     font-size: 1.2em;
 }
-
+.datos-mostrados .button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
 .datos-mostrados .submit-btn {
-    margin-top: 20px;
-    width: auto;
-    min-width: 200px;
+    display: inline-block;
+    padding: 12px 30px;
+    background-color: #00ff88;
+    color: #000;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 1.1em;
+}
+.datos-mostrados .submit-btn:hover {
+    background-color: #00cc6a;
+    transform: translateY(-2px);
 }
 
 .register-link {
