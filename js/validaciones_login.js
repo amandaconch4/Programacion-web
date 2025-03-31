@@ -23,6 +23,7 @@ function validarContraseña(contraseña) {
     const tieneNumero = /[0-9]/.test(contraseña);
     const tieneMayuscula = /[A-Z]/.test(contraseña);
     const longitudCorrecta = contraseña.length >= 6 && contraseña.length <= 18;
+    const tieneCaracterEspecial = /[.,!@#$%^&*]/.test(contraseña);
 
     if (!longitudCorrecta) {
         passwordError.textContent = 'La contraseña debe tener entre 6 y 18 caracteres';
@@ -38,6 +39,12 @@ function validarContraseña(contraseña) {
 
     if (!tieneMayuscula) {
         passwordError.textContent = 'La contraseña debe contener al menos una letra mayúscula';
+        passwordError.style.display = 'block';
+        return false;
+    }
+
+    if (!tieneCaracterEspecial) {
+        passwordError.textContent = 'La contraseña debe contener al menos un carácter especial (.,!@#$%^&*)';
         passwordError.style.display = 'block';
         return false;
     }
