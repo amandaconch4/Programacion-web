@@ -58,18 +58,15 @@ form.addEventListener('submit', function(e) {
     }
 
     // Aquí iría la lógica de recuperación de contraseña
-    mostrarMensajeExito();
-});
+    // Por ahora, solo mostraremos un mensaje de éxito
 
-function mostrarMensajeExito() {
-    const formBox = document.querySelector('.form-box');
-    formBox.innerHTML = `
-        <div class="mensaje-exito">
-            <h2>¡Correo enviado!</h2>
-            <p>Se ha enviado un enlace de recuperación a tu correo electrónico.</p>
-            <div class="button-container">
-                <a href="login.html" class="submit-btn">Volver al inicio de sesión</a>
-            </div>
-        </div>
-    `;
-} 
+    const datosHTML = `
+    <div class="datos-mostrados">
+        <h2>¡Correo enviado!</h2>
+        <p>Se ha enviado un enlace de recuperación a tu correo electrónico.</p>
+        <p>Por favor, revisa tu bandeja de entrada.</p>
+        <button onclick="window.location.href='login.html'" class="submit-btn">Volver al login</button>
+    </div>
+`;
+document.querySelector('.form-box').innerHTML = datosHTML;
+});
