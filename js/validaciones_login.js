@@ -78,10 +78,25 @@ function validarFormulario() {
 }
 
 // Event Listeners
-password.addEventListener('input', function() {
-    if (this.value.trim() !== '') {
-        validarContraseña(this.value);
+
+username.addEventListener('invalid', function(e) {
+    e.preventDefault();
+    if (!this.validity.valid) {
+        usernameError.textContent = 'Por favor, ingrese un nombre de usuario';
+        usernameError.style.display = 'block';
     } else {
+        usernameError.textContent = '';
+        usernameError.style.display = 'none';
+    }
+});
+
+password.addEventListener('invalid', function(e) {
+    e.preventDefault();
+    if (!this.validity.valid) {
+        passwordError.textContent = 'Por favor, ingrese una contraseña válida';
+        passwordError.style.display = 'block';
+    } else {
+        passwordError.textContent = '';
         passwordError.style.display = 'none';
     }
 });
