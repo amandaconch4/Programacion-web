@@ -1,4 +1,4 @@
-const form = document.getElementById('recuperarForm');
+const form = document.getElementById('recuperarPasswordForm');
 const emailInput = document.getElementById('email');
 const emailError = document.getElementById('email-error');
 
