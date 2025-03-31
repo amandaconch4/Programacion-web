@@ -68,17 +68,20 @@
                 <div class="form-group">
                     <label for="nombre">Nombre completo:</label>
                     <input type="text" id="nombre" name="nombre" required>
+                    <span class="error-message" id="nombre-error"></span>
                 </div>
 
                 <div class="form-group">
                     <label for="username">Nombre de usuario:</label>
                     <input type="text" id="username" name="username" required>
+                    <span class="error-message" id="username-error"></span>
                 </div>
 
                 <div class="form-group">
                     <label for="email">Correo electrónico:</label>
                     <input type="email" id="email" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
                         placeholder="ejemplo@correo.com" required>
+                    <span class="error-message" id="email-error"></span>
                     <div class="email-requisitos">
                         <p>El correo electrónico debe tener:</p>
                         <ul>
@@ -87,7 +90,7 @@
                             <li id="req-email-dominio">Dominio válido (.com, .org, etc.)</li>
                         </ul>
                     </div>
-                    <span class="error-message" id="email-error"></span>
+
                 </div>
 
                 <div class="form-group">
@@ -96,6 +99,7 @@
                     <button type="button" class="password-toggle" onclick="togglePassword('password')">
                         <i class="fas fa-eye" id="toggleIcon-password"></i>
                     </button>
+                    <span class="error-message" id="password-error"></span>
                     <div class="password-requisitos">
                         <p>La contraseña debe tener:</p>
                         <ul>
@@ -104,10 +108,9 @@
                             <li id="req-mayus">Al menos una letra mayúscula</li>
                         </ul>
                     </div>
-                    <span class="error-message" id="password-error"></span>
                 </div>
                 <div class="form-group">
-                    <label for="password">Confirmar Contraseña:</label>
+                    <label for="confirmarPassword">Confirmar Contraseña:</label>
                     <input type="password" id="confirmarPassword" name="confirmarPassword" required>
                     <button type="button" class="password-toggle" onclick="togglePassword('confirmarPassword')">
                         <i class="fas fa-eye" id="toggleIcon-confirmarPassword"></i>
