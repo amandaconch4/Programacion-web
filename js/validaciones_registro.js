@@ -174,10 +174,26 @@ emailInput.addEventListener('input', function() {
         emailError.style.display = 'none';
     }
 });
-usernameInput.addEventListener('input', function() {
-    if (this.validity.valid) {
+
+usernameInput.addEventListener('invalid', function(e) {
+    e.preventDefault();
+    if (!this.validity.valid) {
+        usernameError.textContent = 'Por favor, ingrese un nombre de usuario';
+        usernameError.style.display = 'block';
+    } else {
         usernameError.textContent = '';
         usernameError.style.display = 'none';
+    }
+});
+
+nombreInput.addEventListener('invalid', function(e) {
+    e.preventDefault();
+    if (!this.validity.valid) {
+        nombreError.textContent = 'Por favor, ingrese su nombre completo';
+        nombreError.style.display = 'block';
+    } else {
+        nombreError.textContent = '';
+        nombreError.style.display = 'none';
     }
 });
 
