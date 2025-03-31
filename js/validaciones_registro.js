@@ -174,15 +174,12 @@ function mostrarDatos(e) {
             <p><strong>Fecha de nacimiento:</strong> ${fechaNacimiento}</p>
             <p><strong>Dirección:</strong> ${direccion}</p>
             <p><strong>Contraseña:</strong> [Protegida]</p>
-            <button onclick="limpiarDatos()" class="submit-btn">Volver al formulario</button>
+            <div class="button-container">
+                <a href="login.html" class="submit-btn">Iniciar Sesión</a>
+            </div>
         </div>
     `;
 
     // Ocultar el formulario y mostrar los datos
     document.querySelector('.form-box').innerHTML = datosHTML;
-}
-
-function limpiarDatos() {
-    // Recargar la página para volver al formulario
-    window.location.reload();
 }
