@@ -67,7 +67,9 @@ function mostrarMensajeExito() {
         <div class="mensaje-exito">
             <h2>¡Correo enviado!</h2>
             <p>Se ha enviado un enlace de recuperación a tu correo electrónico.</p>
-            <a href="login.html" class="submit-btn">Volver al inicio de sesión</a>
+            <div class="button-container">
+                <a href="login.html" class="submit-btn">Volver al inicio de sesión</a>
+            </div>
         </div>
     `;
 } 
