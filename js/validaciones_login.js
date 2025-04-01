@@ -106,7 +106,9 @@ password.addEventListener('invalid', function(e) {
 form.addEventListener('submit', function(e) {
     e.preventDefault();
     
-    if (validarFormulario()) {
+    let esValido = validarFormulario();
+    
+    if (esValido) {
         // Simular verificación de credenciales (en un caso real, esto se haría con una API)
         if (username.value === 'admin' && password.value === 'admin123') {
             // Si es el administrador, redirigir al panel de administración
@@ -114,20 +116,12 @@ form.addEventListener('submit', function(e) {
         } else {
             // Verificar si el usuario existe en localStorage (simulación de base de datos)
             const usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
-            console.log('Usuarios en localStorage:', usuarios);
-            console.log('Credenciales ingresadas:', { username: username.value, password: password.value });
             
-            const usuario = usuarios.find(u => {
-                console.log('Comparando:', { 
-                    usuario: u.username, 
-                    password: u.password,
-                    coincide: u.username === username.value && u.password === password.value 
-                });
-                return u.username === username.value && u.password === password.value;
-            });
+            const usuario = usuarios.find(u => 
+                u.username === username.value && u.password === password.value
+            );
 
             if (usuario) {
-                console.log('Usuario encontrado:', usuario);
                 // Guardar información del usuario actual
                 const usuarioActual = {
                     id: usuario.id,
@@ -150,8 +144,9 @@ form.addEventListener('submit', function(e) {
                 // Redirigir al panel de usuario
                 window.location.href = 'panel-usuario.html';
             } else {
-                console.log('Usuario no encontrado');
-                // Mostrar error de credenciales inválidas
+                // Mostrar mensaje de error
+                usernameError.textContent = 'Usuario o contraseña incorrectos';
+                usernameError.style.display = 'block';
                 passwordError.textContent = 'Usuario o contraseña incorrectos';
                 passwordError.style.display = 'block';
             }
