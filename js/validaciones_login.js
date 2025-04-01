@@ -6,14 +6,16 @@ const passwordError = document.getElementById('password-error');
 
 function togglePassword(inputId) {
     const input = document.getElementById(inputId);
-    const icon = document.getElementById('toggleIcon-' + inputId);
-    
-    if (input.type === "password") {
-        input.type = "text";
+    const icon = document.getElementById(`toggleIcon-${inputId}`);
+    const error = document.getElementById(`${inputId}-error`);
+
+    if (input.type === 'password') {
+        input.type = 'text';
         icon.classList.remove('fa-eye');
         icon.classList.add('fa-eye-slash');
+        error.style.display = 'none';
     } else {
-        input.type = "password";
+        input.type = 'password';
         icon.classList.remove('fa-eye-slash');
         icon.classList.add('fa-eye');
     }
@@ -70,8 +72,8 @@ function validarFormulario() {
         passwordError.textContent = 'Por favor, ingrese su contraseña';
         passwordError.style.display = 'block';
         esValido = false;
-    } else if (!validarContraseña(password.value)) {
-        esValido = false;
+    } else {
+        passwordError.style.display = 'none';
     }
 
     return esValido;
@@ -105,16 +107,63 @@ form.addEventListener('submit', function(e) {
     e.preventDefault();
     
     if (validarFormulario()) {
-        // Aquí puedes agregar la lógica para enviar los datos al servidor
-        // Por ahora, solo mostraremos un mensaje de éxito
-        const datosHTML = `
-            <div class="datos-mostrados">
-                <h2>¡Bienvenid@!</h2>
-                <p>Has iniciado sesión correctamente.</p>
-                <p>Usuario: ${username.value}</p>
-                <button onclick="window.location.href='index.html'" class="submit-btn">Ir al inicio</button>
-            </div>
-        `;
-        document.querySelector('.form-box').innerHTML = datosHTML;
+        // Simular verificación de credenciales (en un caso real, esto se haría con una API)
+        if (username.value === 'admin' && password.value === 'admin123') {
+            // Si es el administrador, redirigir al panel de administración
+            window.location.href = 'admin.html';
+        } else {
+            // Verificar si el usuario existe en localStorage (simulación de base de datos)
+            const usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
+            console.log('Usuarios en localStorage:', usuarios);
+            console.log('Credenciales ingresadas:', { username: username.value, password: password.value });
+            
+            const usuario = usuarios.find(u => {
+                console.log('Comparando:', { 
+                    usuario: u.username, 
+                    password: u.password,
+                    coincide: u.username === username.value && u.password === password.value 
+                });
+                return u.username === username.value && u.password === password.value;
+            });
+
+            if (usuario) {
+                console.log('Usuario encontrado:', usuario);
+                // Guardar información del usuario actual
+                const usuarioActual = {
+                    id: usuario.id,
+                    nombre: usuario.nombre,
+                    email: usuario.email,
+                    username: usuario.username
+                };
+
+                localStorage.setItem('usuarioActual', JSON.stringify(usuarioActual));
+
+                // Si marcó "Recordarme", guardar la sesión
+                const rememberMe = document.getElementById('remember-me').checked;
+                if (rememberMe) {
+                    localStorage.setItem('sesionGuardada', JSON.stringify({
+                        username: username.value,
+                        rememberMe: true
+                    }));
+                }
+
+                // Redirigir al panel de usuario
+                window.location.href = 'panel-usuario.html';
+            } else {
+                console.log('Usuario no encontrado');
+                // Mostrar error de credenciales inválidas
+                passwordError.textContent = 'Usuario o contraseña incorrectos';
+                passwordError.style.display = 'block';
+            }
+        }
+    }
+});
+
+// Verificar si hay una sesión guardada al cargar la página
+window.addEventListener('load', function() {
+    const sesionGuardada = JSON.parse(localStorage.getItem('sesionGuardada'));
+    if (sesionGuardada && sesionGuardada.rememberMe) {
+        username.value = sesionGuardada.username;
+        document.getElementById('remember-me').checked = true;
     }
 }); 

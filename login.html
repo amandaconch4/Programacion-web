@@ -63,7 +63,7 @@
     <div class="content-container">
         <div class="form-box">
             <h2>Iniciar Sesión</h2>
-            <form id="loginForm">
+            <form id="loginForm" onsubmit="validarFormulario(event)">
                 <div class="form-group">
                     <label for="username">Nombre de usuario:</label>
                     <input type="text" id="username" name="username" required>
@@ -100,7 +100,122 @@
         </div>
     </div>
 
-    <script src="js/validaciones_login.js"></script>
+    <script>
+        // Crear usuario de prueba
+        const usuarioPrueba = {
+            id: 1,
+            nombre: "Juan Pérez",
+            email: "juan.perez@email.com",
+            username: "juanperez",
+            password: "Juan123!",
+            fechaNacimiento: "1990-01-01"
+        };
+
+        // Limpiar usuarios existentes
+        localStorage.removeItem('usuarios');
+
+        // Crear nuevo array de usuarios
+        const usuarios = [usuarioPrueba];
+
+        // Guardar en localStorage
+        localStorage.setItem('usuarios', JSON.stringify(usuarios));
+
+        // Función para mostrar/ocultar contraseña
+        function togglePassword(inputId) {
+            const input = document.getElementById(inputId);
+            const icon = document.getElementById(`toggleIcon-${inputId}`);
+            const error = document.getElementById(`${inputId}-error`);
+
+            if (input.type === 'password') {
+                input.type = 'text';
+                icon.classList.remove('fa-eye');
+                icon.classList.add('fa-eye-slash');
+                error.style.display = 'none';
+            } else {
+                input.type = 'password';
+                icon.classList.remove('fa-eye-slash');
+                icon.classList.add('fa-eye');
+            }
+        }
+
+        // Función para validar el formulario
+        function validarFormulario(event) {
+            event.preventDefault();
+            
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const usernameError = document.getElementById('username-error');
+            const passwordError = document.getElementById('password-error');
+
+            // Limpiar mensajes de error anteriores
+            usernameError.style.display = 'none';
+            passwordError.style.display = 'none';
+
+            let esValido = true;
+
+            // Validar nombre de usuario
+            if (username.trim() === '') {
+                usernameError.textContent = 'Por favor, ingrese su nombre de usuario';
+                usernameError.style.display = 'block';
+                esValido = false;
+            }
+
+            // Validar contraseña
+            if (password.trim() === '') {
+                passwordError.textContent = 'Por favor, ingrese su contraseña';
+                passwordError.style.display = 'block';
+                esValido = false;
+            }
+
+            if (esValido) {
+                // Verificar si es administrador
+                if (username === 'admin' && password === 'admin123') {
+                    window.location.href = 'admin.html';
+                } else {
+                    // Verificar si el usuario existe en localStorage
+                    const usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
+                    const usuario = usuarios.find(u => u.username === username && u.password === password);
+
+                    if (usuario) {
+                        // Guardar información del usuario actual
+                        const usuarioActual = {
+                            id: usuario.id,
+                            nombre: usuario.nombre,
+                            email: usuario.email,
+                            username: usuario.username
+                        };
+
+                        localStorage.setItem('usuarioActual', JSON.stringify(usuarioActual));
+
+                        // Si marcó "Recordarme", guardar la sesión
+                        const rememberMe = document.getElementById('remember-me').checked;
+                        if (rememberMe) {
+                            localStorage.setItem('sesionGuardada', JSON.stringify({
+                                username: username,
+                                rememberMe: true
+                            }));
+                        }
+
+                        // Redirigir al panel de usuario
+                        window.location.href = 'panel-usuario.html';
+                    } else {
+                        // Mostrar error de credenciales inválidas
+                        passwordError.textContent = 'Usuario o contraseña incorrectos';
+                        passwordError.style.display = 'block';
+                    }
+                }
+            }
+        }
+
+        // Verificar si hay una sesión guardada al cargar la página
+        window.addEventListener('load', function() {
+            const sesionGuardada = JSON.parse(localStorage.getItem('sesionGuardada'));
+            if (sesionGuardada && sesionGuardada.rememberMe) {
+                document.getElementById('username').value = sesionGuardada.username;
+                document.getElementById('remember-me').checked = true;
+            }
+        });
+    </script>
     <script src="js/carrito.js"></script>
 </body>
 
