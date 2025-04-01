@@ -56,16 +56,16 @@
             <div class="admin-header">
                 <h2>Acceso Administrador</h2>
             </div>
-            <form id="adminLoginForm">
+            <form id="adminLoginForm" onsubmit="return validarFormulario(event)">
                 <div class="form-group">
                     <label for="admin-username">Usuario Administrador:</label>
-                    <input type="text" id="admin-username" name="admin-username" required>
+                    <input type="text" id="admin-username" name="admin-username">
                     <span class="error-message" id="admin-username-error"></span>
                 </div>
 
                 <div class="form-group">
                     <label for="admin-password">Contraseña:</label>
-                    <input type="password" id="admin-password" name="admin-password" required>
+                    <input type="password" id="admin-password" name="admin-password">
                     <button type="button" class="password-toggle" onclick="togglePassword('admin-password')">
                         <i class="fas fa-eye" id="toggleIcon-admin-password"></i>
                     </button>
@@ -94,11 +94,13 @@
         function togglePassword(inputId) {
             const input = document.getElementById(inputId);
             const icon = document.getElementById(`toggleIcon-${inputId}`);
-            
+            const error = document.getElementById(`${inputId}-error`);  // Error correspondiente a la contraseña
+
             if (input.type === 'password') {
                 input.type = 'text';
                 icon.classList.remove('fa-eye');
                 icon.classList.add('fa-eye-slash');
+                error.style.display = 'none';  // Ocultar el mensaje de error cuando la contraseña sea visible
             } else {
                 input.type = 'password';
                 icon.classList.remove('fa-eye-slash');
@@ -106,21 +108,72 @@
             }
         }
 
-        // Manejo del formulario de administrador
-        document.getElementById('adminLoginForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const username = document.getElementById('admin-username').value;
-            const password = document.getElementById('admin-password').value;
-            
-            // Aquí irá la validación real del administrador
-            // Por ahora usaremos credenciales de prueba
-            if (username === 'admin' && password === 'admin123') {
-                window.location.href = 'panel-admin.html';
+        // Validar el formulario de login
+        function validarFormulario(event) {
+            event.preventDefault();  // Evitar el envío del formulario si hay un error
+
+            let esValido = true;
+
+            const username = document.getElementById('admin-username');
+            const usernameError = document.getElementById('admin-username-error');
+            const password = document.getElementById('admin-password');
+            const passwordError = document.getElementById('admin-password-error');
+
+            // Validación del nombre de usuario
+            if (username.value.trim() === '') {
+                usernameError.textContent = 'Por favor, ingrese su nombre de usuario';
+                usernameError.style.display = 'block';
+                esValido = false;
             } else {
-                alert('Credenciales incorrectas. Por favor, intente nuevamente.');
+                usernameError.style.display = 'none';
+            }
+
+            // Validación de la contraseña
+            if (password.value.trim() === '') {
+                passwordError.textContent = 'Por favor, ingrese su contraseña';
+                passwordError.style.display = 'block';
+                esValido = false;
+            } else {
+                passwordError.style.display = 'none';
+            }
+
+            // Si los campos son válidos, redirigimos
+            if (esValido) {
+                const usernameValue = username.value;
+                const passwordValue = password.value;
+
+                // Aquí va la validación de las credenciales del administrador
+                if (usernameValue === 'admin' && passwordValue === 'admin123') {
+                    window.location.href = 'panel-admin.html';
+                } else {
+                    alert('Credenciales incorrectas. Por favor, intente nuevamente.');
+                }
+            }
+
+            return esValido;
+        }
+
+        // Event Listeners para manejar validaciones en tiempo real
+        document.getElementById('admin-username').addEventListener('input', function() {
+            const usernameError = document.getElementById('admin-username-error');
+            if (this.value.trim() === '') {
+                usernameError.textContent = 'Por favor, ingrese su nombre de usuario';
+                usernameError.style.display = 'block';
+            } else {
+                usernameError.style.display = 'none';
+            }
+        });
+
+        document.getElementById('admin-password').addEventListener('input', function() {
+            const passwordError = document.getElementById('admin-password-error');
+            if (this.value.trim() === '') {
+                passwordError.textContent = 'Por favor, ingrese su contraseña';
+                passwordError.style.display = 'block';
+            } else {
+                passwordError.style.display = 'none';
             }
         });
     </script>
 </body>
 
-</html> 
+</html>
